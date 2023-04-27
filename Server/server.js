@@ -145,6 +145,17 @@ app.get("/Update", (req, res) => {
   });
 });
 
+
+app.post('/Connexion', async (req, res) => {
+  try {
+    await login(req, res);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Server error' });
+  }
+});
+
+
 app.post("/RegisterDoctorant", (req, res) => {
   const { Nom, Prenom, Id_Doctorant, Id_PV, Numero_tel, Email, Birthday, Sex } =
     req.body;
