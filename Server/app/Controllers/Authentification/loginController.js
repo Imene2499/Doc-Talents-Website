@@ -1,4 +1,3 @@
-import "../../../../Client/src/pages/Home";
 const db = require("../../../DB/db_config");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
