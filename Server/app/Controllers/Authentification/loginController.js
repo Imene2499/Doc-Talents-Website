@@ -36,7 +36,6 @@ const login = async (req, res) => {
           res.cookie("userSave", token, cookieOptions);
           res.status(200).send({
             message: "Login successful",
-            redirect: "../../../../Client/src/pages/Home",
           });
         }
       }
