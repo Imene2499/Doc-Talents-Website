@@ -1,31 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Connexion.css";
 import axios from "axios";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 export default function LoginForm() {
-  const [mail, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const history = useHistory();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    history.push("/Dashboard");
-    /*
+
+
     try {
-      const response = await axios.post("../../../../Server/app/Controllers/Authentification/loginController", {
-        mail,
-        password,
-      });
-      console.log(response.data);
-      // redirect to home page or handle login success
-    } catch (error) {
-      console.error(error.response.data);
-      // handle login failure
+      const response = await axios.post(
+        `http://localhost:3000/Connexion`,
+        { email, password }
+      );
+
+      if (response.status === 200) {
+        history('/Connexion');
+      }
+    } catch (err) {
+      console.log(err);
     }
-    */
+    
   };
 
   return (
@@ -39,12 +39,12 @@ export default function LoginForm() {
             Nom Utilisateur
           </label>
           <input
-            className="border rounded-lg border-purple mb-12 p-4 opacity-75 w-[400px]"
+            className="input rounded-[7px] mb-12 p-4 opacity-75 w-[400px] border rounded-lg border-purple"
             type="email"
             name="email"
             id="email"
             required
-            value={mail}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <label
@@ -54,7 +54,7 @@ export default function LoginForm() {
             Mot de passe
           </label>
           <input
-            className="border rounded-[7px] border-purple  p-4 opacity-75 w-[400px]"
+            className="input rounded-[7px] mb-12 p-4 opacity-75 w-[400px] border rounded-lg border-purple"           
             type="password"
             name="password"
             id="password"
@@ -79,3 +79,4 @@ export default function LoginForm() {
     </div>
   );
 }
+
