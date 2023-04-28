@@ -6,13 +6,14 @@ import { useHistory } from 'react-router-dom';
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
+    setIsLoading(true);
     try {
       const response = await axios.post(
         `http://localhost:3000/Connexion`,
@@ -20,7 +21,7 @@ export default function LoginForm() {
       );
 
       if (response.status === 200) {
-        history('/Connexion');
+        history.push("/Connexion");
       }
     } catch (err) {
       console.log(err);
@@ -72,8 +73,9 @@ export default function LoginForm() {
         <button
           type="submit"
           className="bg-purple text-white font-semibold pt-4 pb-4 mt-20 w-[400px] rounded-[8px] cursor-pointer"
+          disabled={isLoading}
         >
-          Connexion
+          {isLoading ? "Connexion en cours..." : "Connexion"}
         </button>
       </form>
     </div>
