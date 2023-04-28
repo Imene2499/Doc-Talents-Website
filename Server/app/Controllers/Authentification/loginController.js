@@ -12,7 +12,7 @@ const login = async (req, res) => {
       });
     }
     db.query(
-      "SELECT * FROM DPGR WHERE mail = ?",
+      "SELECT * FROM DPGR WHERE email = ?",
       [email],
       async (err, results) => {
         console.log(results);
